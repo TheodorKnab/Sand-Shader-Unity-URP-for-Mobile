@@ -581,7 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteStoneIndices: 000000000100000002000000
   blackStoneIndices: 030000000400000005000000
-  plowIndices: 06000000
+  rakeIndices: 06000000
 --- !u!1 &413261258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1396,7 +1396,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Add Plow
+  m_Text: Add Rake
 --- !u!222 &1030279316
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1785,7 +1785,7 @@ GameObject:
   - component: {fileID: 1134837623}
   - component: {fileID: 1134837622}
   m_Layer: 5
-  m_Name: 'RemovePlow '
+  m_Name: RemoveRake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1856,7 +1856,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 335392321}
         m_TargetAssemblyTypeName: ObjectPoolAccessor, Assembly-CSharp
-        m_MethodName: RemovePlow
+        m_MethodName: RemoveRake
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2062,7 +2062,7 @@ GameObject:
   - component: {fileID: 1319907996}
   - component: {fileID: 1319907995}
   m_Layer: 5
-  m_Name: AddPlow
+  m_Name: AddRake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2133,7 +2133,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 335392321}
         m_TargetAssemblyTypeName: ObjectPoolAccessor, Assembly-CSharp
-        m_MethodName: AddPlow
+        m_MethodName: AddRake
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2943,7 +2943,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Remove Plow
+  m_Text: Remove Rake
 --- !u!222 &2029061772
 CanvasRenderer:
   m_ObjectHideFlags: 0

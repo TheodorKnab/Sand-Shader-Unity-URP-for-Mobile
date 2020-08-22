@@ -2,23 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class ObjectPoolAccessor : MonoBehaviour
 {
     public List<int> whiteStoneIndices;
     public List<int> blackStoneIndices;
-    public List<int> plowIndices;
+    public List<int> rakeIndices;
 
     private List<GameObject> _whiteStones;
     private List<GameObject> _blackStones;
-    private List<GameObject> _plows;
+    private List<GameObject> _rakes;
 
     private void Awake()
     {
         _whiteStones = new List<GameObject>();
         _blackStones = new List<GameObject>();
-        _plows = new List<GameObject>();
+        _rakes = new List<GameObject>();
     }
 
     public void AddGameObject(int index , Vector3 position, Quaternion rotation)
@@ -31,8 +32,8 @@ public class ObjectPoolAccessor : MonoBehaviour
         containedInList = blackStoneIndices.IndexOf(index);
         if (containedInList != -1) AddGameObject(index, ref _blackStones, position, rotation);
         
-        containedInList = plowIndices.IndexOf(index);
-        if (containedInList != -1) AddGameObject(index, ref _plows, position, rotation);
+        containedInList = rakeIndices.IndexOf(index);
+        if (containedInList != -1) AddGameObject(index, ref _rakes, position, rotation);
     }
     
     public void AddGameObject(int index, ref List<GameObject> objects)
@@ -71,15 +72,15 @@ public class ObjectPoolAccessor : MonoBehaviour
     public void AddBlackStone() { AddGameObject(blackStoneIndices, ref _blackStones); }
     public void RemoveBlackStone() { RemoveGameObject(ref _blackStones); }
 
-    public void AddPlow() { AddGameObject(plowIndices, ref _plows); }
-    public void RemovePlow() { RemoveGameObject(ref _plows); }
+    public void AddRake() { AddGameObject(rakeIndices, ref _rakes); }
+    public void RemoveRake() { RemoveGameObject(ref _rakes); }
 
     public void ResetPool()
     {
         ObjectPool.RecycleAll();
         _whiteStones.Clear();
         _blackStones.Clear();
-        _plows.Clear();
+        _rakes.Clear();
     }
 
     private int getRandomIndex(List<int> fromList)

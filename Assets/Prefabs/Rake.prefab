@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: -7494687119995367110}
   - component: {fileID: -5848956020899483523}
   m_Layer: 8
-  m_Name: Plow
+  m_Name: Rake
   m_TagString: Movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
