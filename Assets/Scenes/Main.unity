@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1.52
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.60920256, g: 0.6343659, b: 0.6981132, a: 1}
+  m_SubtractiveShadowColor: {r: 0.73945355, g: 0.76419735, b: 0.8207547, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 71f14a2d79f732f4d9893ef1b911f4ff, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -2310,7 +2310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfb509c3a25283e4bb557757fadf7769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blurSize: 1
+  blurSize: 1.2
   differenceBlurSize: 3
   depthTex: {fileID: 8400000, guid: 0d3b9150526835e4687eff5a323cc3f1, type: 2}
   addTexture: {fileID: 8400000, guid: 76920295da9fcaa42bc73b9d625f06ed, type: 2}

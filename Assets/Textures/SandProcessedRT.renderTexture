@@ -15,7 +15,7 @@ RenderTexture:
   serializedVersion: 3
   m_Width: 2048
   m_Height: 2048
-  m_AntiAliasing: 4
+  m_AntiAliasing: 8
   m_MipCount: -1
   m_DepthFormat: 0
   m_ColorFormat: 5

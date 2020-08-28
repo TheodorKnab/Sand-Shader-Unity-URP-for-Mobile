@@ -34,6 +34,8 @@ Shader "Universal Render Pipeline/temp_name/SandShader"
         _DispStrength("Scale", Float) = 1.0
         _DispMap("Displacement Map", 2D) = "white" {}
         
+        _SparkleStrength("Scale", Float) = 1.0
+        _SparkleMap("Sparkle Map", 2D) = "white" {}
         
         
         _OcclusionStrength("Strength", Range(0.0, 1.0)) = 1.0
@@ -163,9 +165,10 @@ Shader "Universal Render Pipeline/temp_name/SandShader"
             #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
             
                  
-            float _DispStrength;    
+            float _DispStrength, _SparkleStrength;    
             float4 _DispMap_TexelSize;  
-            sampler2D _DispMap;
+            sampler2D _DispMap, _SparkleMap;
+            float4 _SparkleMap_ST, _SparkleMap_TexelSize;
 
             struct Attributes
             {
@@ -193,7 +196,7 @@ Shader "Universal Render Pipeline/temp_name/SandShader"
                 float4 shadowCoord              : TEXCOORD6; // compute shadow coord per-vertex for the main light
 #endif              
                 
-                float4 additionalPosition       : TEXCOORD7;
+                float4 positionScreenSpace       : TEXCOORD7;
                 float4 positionCS               : SV_POSITION;
             };
 
@@ -217,7 +220,7 @@ Shader "Universal Render Pipeline/temp_name/SandShader"
                 output.uv = TRANSFORM_TEX(input.uv, _BaseMap);
                 output.uvLM = input.uvLM.xy * unity_LightmapST.xy + unity_LightmapST.zw;
 
-                output.additionalPosition = float4(vertexInput.positionWS, fogFactor);       
+                output.positionScreenSpace = vertexInput.positionCS;       
                         
 
                 output.positionWSAndFogFactor = float4(vertexInput.positionWS, fogFactor);
@@ -315,7 +318,7 @@ Shader "Universal Render Pipeline/temp_name/SandShader"
                 // Mix diffuse GI with environment reflections.
                 half3 color = GlobalIllumination(brdfData, bakedGI, surfaceData.occlusion, normalWS, viewDirectionWS);
 
-                // LightingPhysicallyBased computes direct light contribution.
+                // LightingPhysicallyBased computes direct light contribution.              
                 color += LightingPhysicallyBased(brdfData, mainLight, normalWS, viewDirectionWS);
 
                 // Additional lights loop
@@ -335,8 +338,18 @@ Shader "Universal Render Pipeline/temp_name/SandShader"
                     color += LightingPhysicallyBased(brdfData, light, normalWS, viewDirectionWS);
                 }
 #endif
-                // Emission
-                color += surfaceData.emission;
+                //Add the depth to the color, lower regions are darker
+                half depthColorFactor = 1 + 0.2 * (1 - heightSampleCenter); 
+                color *= depthColorFactor;
+                
+                // Sparkles
+                half2 screenpos = input.positionScreenSpace.xy/input.positionScreenSpace.w;
+                half sparkleColor = tex2D(_SparkleMap, TRANSFORM_TEX(screenpos, _SparkleMap) + heightSampleCenter *0.1 ).rgb * _SparkleStrength;
+                color += sparkleColor * LightingSpecular(mainLight.color, mainLight.direction, normalWS, GetCameraPositionWS(), (1,1,1,1), 1);
+                color += sparkleColor * 7 * LightingSpecular(mainLight.color, mainLight.direction, normalWS, GetCameraPositionWS(), (1,1,1,1), 30);
+               
+                
+                
                            
                
                 return half4(color, surfaceData.alpha);

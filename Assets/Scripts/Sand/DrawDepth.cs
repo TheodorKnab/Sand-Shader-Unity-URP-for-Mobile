@@ -91,6 +91,15 @@ public class DrawDepth : MonoBehaviour
         
         blurYMaterial.SetTexture("_MainTex", _tempTexA);
         Graphics.Blit(_tempTexA, depthTex, blurYMaterial);
+        
+        //blurYMaterial.SetTexture("_MainTex", _tempTexB);
+        //Graphics.Blit(_tempTexB, _tempTexA, blurYMaterial);
+        //
+        //blurXMaterial.SetTexture("_MainTex", _tempTexA);
+        //Graphics.Blit(_tempTexA, _tempTexB, blurXMaterial);
+        //
+        //blurYMaterial.SetTexture("_MainTex", _tempTexB);
+        //Graphics.Blit(_tempTexB, depthTex, blurYMaterial);
     }
 
     private void OnDestroy()
