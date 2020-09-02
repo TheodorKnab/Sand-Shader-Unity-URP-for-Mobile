@@ -210,8 +210,8 @@ public class ObjectMovement : MonoBehaviour
         else // end movement State
         {
             _objRb.constraints = RigidbodyConstraints.None;
-            _objTouchIDWithOffset.Clear();
-
+            _objTouchIDWithOffset.Clear();			
+            _pickedUp = false;
         }
     }
 
