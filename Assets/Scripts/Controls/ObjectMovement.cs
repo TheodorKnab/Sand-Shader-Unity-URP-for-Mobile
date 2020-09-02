@@ -174,7 +174,7 @@ public class ObjectMovement : MonoBehaviour
                     }); //Screen vector to world with correct height
         Vector3 force = _newPos - (transform.position + offsetInWorldSpace);
         
-        _objRb.AddForceAtPosition(force,transform.position + offsetInWorldSpace );
+        _objRb.AddForceAtPosition(force * 2,transform.position + offsetInWorldSpace );
     }
 
     private void StartMovement(Touch touch, GameObject dragObject)

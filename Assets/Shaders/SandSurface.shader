@@ -345,9 +345,12 @@ Shader "Universal Render Pipeline/temp_name/SandShader"
                 // Sparkles
                 half2 screenpos = input.positionScreenSpace.xy/input.positionScreenSpace.w;
                 half sparkleColor = tex2D(_SparkleMap, TRANSFORM_TEX(screenpos, _SparkleMap) + heightSampleCenter *0.1 ).rgb * _SparkleStrength;
-                color += sparkleColor * LightingSpecular(mainLight.color, mainLight.direction, normalWS, GetCameraPositionWS(), (1,1,1,1), 1);
+                //add white sparkles, general sparkles and stronger sparkles
+                color += sparkleColor * LightingSpecular(mainLight.color, mainLight.direction, normalWS, GetCameraPositionWS(), (1,1,1,1), 1); 
                 color += sparkleColor * 7 * LightingSpecular(mainLight.color, mainLight.direction, normalWS, GetCameraPositionWS(), (1,1,1,1), 30);
-               
+                //add darker sparkles (or points, makes the sand look a bit more like sand)
+                half greyColor = tex2D(_SparkleMap, screenpos * -4.5 + heightSampleCenter * 0.1  ).rgb * _SparkleStrength;                
+                color -= half3(1,0.7,0.6) * greyColor * 0.5;               
                 
                 
                            
