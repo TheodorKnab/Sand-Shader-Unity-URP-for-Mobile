@@ -9,8 +9,7 @@
 
 
 ## Demo Scene
-![](https://github.com/TheodorKnab/Sand-Shader-Unity-URP-for-Mobile/blob/master/Documentation/SandDemo.gif)
-
+![]("http://theodorknab.com/wp-content/uploads/2020/09/Sand_Demo.gif")
 In the demo scene (Assets/Scenes/Main.unity) you can spawn stones or a rake via the buttons. 
 * Left click / touch: drag object
 * Long left click / touch: pick up object
