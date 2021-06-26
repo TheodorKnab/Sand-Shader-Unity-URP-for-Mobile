@@ -7,6 +7,7 @@
 
 <img src="http://theodorknab.com/wp-content/uploads/2020/09/Sand_Texture_Example.png" title="Sand Demo" alt="Sand Demo">
 
+Uses Unity Version 2020.1.2f1 with the Universal Render Pipeline.
 
 ## Demo Scene
 ![]("http://theodorknab.com/wp-content/uploads/2020/09/Sand_Demo.gif")
